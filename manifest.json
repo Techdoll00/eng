@@ -4,8 +4,8 @@
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fcfaf7",
-  "theme_color": "#2d2d2d",
-  "description": "An editorial English upgrade tool for daily thinking journal.",
+  "theme_color": "#fcfaf7",
+  "description": "Hand-drawn English upgrade tool for personal clarity and growth.",
   "icons": [
     {
       "src": "icon-192.png",

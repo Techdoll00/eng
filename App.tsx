@@ -86,7 +86,7 @@ const App: React.FC = () => {
         </div>
       )}
       
-      <div className="flex justify-between items-start mb-8">
+      <div className="flex justify-between items-start mb-10">
         <div>
           <span className="text-[10px] font-bold text-neutral-300 tracking-widest uppercase font-hand">
             {new Date(card.timestamp).toLocaleDateString()}
@@ -99,7 +99,7 @@ const App: React.FC = () => {
       </div>
 
       <div className="space-y-12">
-        <div className="text-sm text-neutral-500 font-hand italic leading-relaxed border-l border-neutral-200 pl-4 py-1">
+        <div className="text-sm text-neutral-500 font-hand italic leading-relaxed border-l-2 border-neutral-100 pl-4 py-1">
           {card.acknowledgedMeaning}
         </div>
 
@@ -135,16 +135,16 @@ const App: React.FC = () => {
         )}
 
         <div className="pt-8 border-t border-dashed border-neutral-200">
-          <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-1 font-hand">Handy Patterns</p>
+          <p className="text-[10px] font-bold text-neutral-800 uppercase tracking-widest mb-1 font-hand">Handy Patterns</p>
           <p className="text-[9px] text-neutral-400 uppercase mb-6 font-sans">Reusable structures to organize ideas (not grammar rules).</p>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="flex flex-col gap-4">
             {card.patterns.map((p, i) => (
               <PatternNote key={i} pattern={p} />
             ))}
           </div>
         </div>
 
-        <div className="p-6 bg-[#fff9c4]/10 rounded border border-[#fff9c4]/50">
+        <div className="p-6 bg-[#fff9c4]/10 rounded-sm border border-[#fff9c4]/50">
           <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest mb-2 font-hand">Feynman Challenge</p>
           <p className="text-sm text-neutral-700 leading-relaxed font-hand text-lg italic">"{card.feynmanChallenge}"</p>
         </div>
@@ -160,16 +160,16 @@ const App: React.FC = () => {
         <header className="mb-16 flex items-center justify-between">
           <div>
             <MinimalMark active={isUpgrading || isRecording} />
-            <h1 className="text-3xl font-hand mt-2 text-neutral-800 doodle-underline inline-block">Doodle English</h1>
+            <h1 className="text-3xl font-hand mt-3 text-neutral-800 doodle-underline inline-block">Doodle English</h1>
             {isAppLoaded && (
               <div className="flex items-center gap-2 mt-2">
-                <div className="w-1 h-1 rounded-full bg-green-400" />
-                <span className="text-[8px] uppercase tracking-widest text-neutral-400">App Loaded</span>
+                <div className="w-1 h-1 rounded-full bg-neutral-200" />
+                <span className="text-[8px] uppercase tracking-widest text-neutral-300">Journal Active</span>
               </div>
             )}
           </div>
           <div className="text-right">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-300">Journal v1.2</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-300">v1.3</span>
           </div>
         </header>
 
@@ -192,7 +192,7 @@ const App: React.FC = () => {
                   >
                     <div className={`w-2 h-2 rounded-full ${isRecording ? 'bg-white' : 'bg-neutral-800'}`} />
                   </button>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 font-hand">{isRecording ? 'Recording' : 'Voice'}</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 font-hand">{isRecording ? 'Listening' : 'Voice Input'}</span>
                 </div>
 
                 <button 
@@ -214,8 +214,8 @@ const App: React.FC = () => {
             
             {result ? renderCard(result) : (
               <div className="mt-24 text-center opacity-20 py-12 transition-opacity duration-700">
-                <div className="w-8 h-px bg-neutral-300 mx-auto mb-4" />
-                <p className="font-hand text-lg italic">"Thought is the soul of language."</p>
+                <div className="w-6 h-px bg-neutral-300 mx-auto mb-4" />
+                <p className="font-hand text-lg italic">"Simplicity is the ultimate sophistication."</p>
               </div>
             )}
           </>
@@ -224,12 +224,12 @@ const App: React.FC = () => {
         {activeTab === 'Archive' && (
           <div className="animate-in fade-in duration-500">
             <div className="mb-12 border-b border-neutral-100 pb-4">
-              <h2 className="text-3xl font-hand doodle-underline inline-block">Learning Journal</h2>
-              <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mt-2">{history.length} Entries</p>
+              <h2 className="text-3xl font-hand doodle-underline inline-block">Your Journal</h2>
+              <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mt-2">{history.length} Memories</p>
             </div>
             {history.length === 0 ? (
               <div className="py-24 text-center opacity-20">
-                <p className="font-hand text-xl">Empty notebook.</p>
+                <p className="font-hand text-xl">The journal is waiting for its first entry.</p>
               </div>
             ) : (
               history.map(card => renderCard(card))
@@ -251,13 +251,13 @@ const Section: React.FC<{
 }> = ({ label, content, onCopy, isCopied, onListen, isPlaying }) => (
   <div className="group">
     <div className="flex justify-between items-center mb-3">
-      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-300 font-hand">{label}</span>
+      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400 font-hand">{label}</span>
       <div className="flex gap-4">
-        <button onClick={onListen} className={`text-[9px] font-bold uppercase tracking-widest transition-colors ${isPlaying ? 'text-neutral-900' : 'text-neutral-300 hover:text-neutral-600'}`}>
-          {isPlaying ? 'Playing' : 'Listen'}
+        <button onClick={onListen} className={`text-[9px] font-bold uppercase tracking-widest transition-colors ${isPlaying ? 'text-neutral-900 underline decoration-dotted' : 'text-neutral-300 hover:text-neutral-600'}`}>
+          {isPlaying ? 'Speaking' : 'Listen'}
         </button>
-        <button onClick={onCopy} className={`text-[9px] font-bold uppercase tracking-widest transition-colors ${isCopied ? 'text-neutral-900' : 'text-neutral-300 hover:text-neutral-600'}`}>
-          {isCopied ? 'Saved' : 'Copy'}
+        <button onClick={onCopy} className={`text-[9px] font-bold uppercase tracking-widest transition-colors ${isCopied ? 'text-neutral-900 underline' : 'text-neutral-300 hover:text-neutral-600'}`}>
+          {isCopied ? 'Copied' : 'Copy'}
         </button>
       </div>
     </div>
@@ -266,7 +266,7 @@ const Section: React.FC<{
 );
 
 const PatternNote: React.FC<{ pattern: StructuralPattern }> = ({ pattern }) => (
-  <div className="scrap-paper p-5 relative mb-2">
+  <div className="scrap-paper p-5 relative">
     <div className="flex flex-col gap-1">
       <h5 className="text-[9px] uppercase font-bold text-neutral-400 tracking-widest">{pattern.title}</h5>
       <p className="text-sm font-bold text-neutral-800 doodle-underline inline-block self-start">{pattern.template}</p>

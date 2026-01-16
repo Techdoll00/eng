@@ -1,10 +1,11 @@
 {
   "name": "Doodle English",
-  "short_name": "English",
-  "start_url": "/",
+  "short_name": "Doodle",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#fcfaf7",
   "theme_color": "#fcfaf7",
+  "orientation": "portrait",
   "description": "Hand-drawn English upgrade tool for personal clarity and growth.",
   "icons": [
     {
@@ -18,5 +19,6 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "categories": ["education", "productivity"]
 }

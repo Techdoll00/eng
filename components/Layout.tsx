@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { TabType } from '../types';
 
@@ -17,17 +16,17 @@ export const Layout: React.FC<LayoutProps> = ({ children, activeTab, onTabChange
   ];
 
   return (
-    <div className="flex flex-col h-screen max-w-md mx-auto relative overflow-hidden">
-      <main className="flex-1 overflow-y-auto px-8 pt-16 pb-32 scroll-smooth">
+    <div className="flex flex-col h-[100dvh] max-w-md mx-auto relative overflow-hidden bg-[#fcfaf7]">
+      <main className="flex-1 overflow-y-auto px-8 pt-16 pb-32 scroll-smooth safe-area-inset-top">
         {children}
       </main>
 
-      <nav className="fixed bottom-0 left-0 right-0 bg-white/40 backdrop-blur-md border-t border-neutral-100/50 flex justify-around items-center px-4 py-8 pb-10 z-50">
+      <nav className="fixed bottom-0 left-0 right-0 bg-white/60 backdrop-blur-xl border-t border-neutral-100/30 flex justify-around items-center px-4 pt-4 pb-[calc(2rem+env(safe-area-inset-bottom))] z-50 no-select">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => onTabChange(tab.id)}
-            className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-all font-hand ${
+            className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-all font-hand tap-active ${
               activeTab === tab.id ? 'text-neutral-900 translate-y-[-2px]' : 'text-neutral-300 hover:text-neutral-400'
             }`}
           >

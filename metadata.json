@@ -1,0 +1,12 @@
+{
+  "name": "Copy of Doodle English",
+  "short_name": "Doodle",
+  "description": "A calm, professional English upgrade tool using the Feynman method.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "theme_color": "#fcfaf7",
+  "background_color": "#fcfaf7",
+  "display": "standalone",
+  "start_url": "/"
+}

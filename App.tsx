@@ -136,8 +136,8 @@ const App: React.FC = () => {
 
         <div className="pt-8 border-t border-dashed border-neutral-200">
           <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-1 font-hand">Handy Patterns</p>
-          <p className="text-[9px] text-neutral-300 uppercase mb-6 font-sans">Reusable structures to organize ideas (not grammar rules).</p>
-          <div className="space-y-4">
+          <p className="text-[9px] text-neutral-400 uppercase mb-6 font-sans">Reusable structures to organize ideas (not grammar rules).</p>
+          <div className="grid grid-cols-1 gap-4">
             {card.patterns.map((p, i) => (
               <PatternNote key={i} pattern={p} />
             ))}
@@ -160,16 +160,16 @@ const App: React.FC = () => {
         <header className="mb-16 flex items-center justify-between">
           <div>
             <MinimalMark active={isUpgrading || isRecording} />
-            <h1 className="text-3xl font-hand mt-2 text-neutral-800">Doodle English</h1>
+            <h1 className="text-3xl font-hand mt-2 text-neutral-800 doodle-underline inline-block">Doodle English</h1>
             {isAppLoaded && (
-              <div className="flex items-center gap-2 mt-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-[8px] uppercase tracking-widest text-neutral-400">App Loaded Successfully</span>
+              <div className="flex items-center gap-2 mt-2">
+                <div className="w-1 h-1 rounded-full bg-green-400" />
+                <span className="text-[8px] uppercase tracking-widest text-neutral-400">App Loaded</span>
               </div>
             )}
           </div>
           <div className="text-right">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-300">Stable v1.2</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-300">Journal v1.2</span>
           </div>
         </header>
 
@@ -179,7 +179,7 @@ const App: React.FC = () => {
               <textarea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder={isRecording ? "Listening to you..." : "Share one thought (English or Chinese)..."}
+                placeholder={isRecording ? "Listening to you..." : "Share a thought..."}
                 className={`w-full h-40 bg-transparent text-xl font-hand focus:outline-none resize-none transition-all placeholder:text-neutral-300 ${isRecording ? 'opacity-40 translate-y-1' : 'opacity-100'}`}
               />
               
@@ -187,20 +187,20 @@ const App: React.FC = () => {
                 <div className="flex items-center gap-6">
                    <button 
                     onClick={toggleRecording}
-                    title="Toggle voice input"
+                    title="Voice input"
                     className={`w-12 h-12 rounded-full sketch-border flex items-center justify-center transition-all tap-active ${isRecording ? 'bg-neutral-800 border-neutral-800' : 'bg-white hover:bg-neutral-50'}`}
                   >
-                    <div className={`w-2.5 h-2.5 rounded-full ${isRecording ? 'bg-white' : 'bg-neutral-800'}`} />
+                    <div className={`w-2 h-2 rounded-full ${isRecording ? 'bg-white' : 'bg-neutral-800'}`} />
                   </button>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 font-hand">{isRecording ? 'Recording...' : 'Voice Input'}</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 font-hand">{isRecording ? 'Recording' : 'Voice'}</span>
                 </div>
 
                 <button 
                   onClick={handleUpgrade} 
                   disabled={isUpgrading || !input.trim()} 
-                  className={`px-6 py-2 sketch-border font-hand text-lg transition-all tap-active bg-white ${isUpgrading || !input.trim() ? 'opacity-30' : 'hover:shadow-md'}`}
+                  className={`px-8 py-2 sketch-border font-hand text-lg transition-all tap-active bg-white ${isUpgrading || !input.trim() ? 'opacity-30' : 'hover:shadow-md'}`}
                 >
-                  {isUpgrading ? "Polishing..." : "Upgrade my English →"}
+                  {isUpgrading ? "Polishing..." : "Upgrade →"}
                 </button>
               </div>
             </div>
@@ -214,9 +214,8 @@ const App: React.FC = () => {
             
             {result ? renderCard(result) : (
               <div className="mt-24 text-center opacity-20 py-12 transition-opacity duration-700">
-                <div className="w-10 h-0.5 bg-neutral-300 mx-auto mb-4" />
-                <p className="font-hand text-lg italic">"Language is the tool of the thought."</p>
-                <p className="text-[9px] uppercase tracking-widest mt-2">Ready for your input</p>
+                <div className="w-8 h-px bg-neutral-300 mx-auto mb-4" />
+                <p className="font-hand text-lg italic">"Thought is the soul of language."</p>
               </div>
             )}
           </>
@@ -225,12 +224,12 @@ const App: React.FC = () => {
         {activeTab === 'Archive' && (
           <div className="animate-in fade-in duration-500">
             <div className="mb-12 border-b border-neutral-100 pb-4">
-              <h2 className="text-3xl font-hand">My Learning Cards</h2>
-              <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mt-1">{history.length} Saved interactions</p>
+              <h2 className="text-3xl font-hand doodle-underline inline-block">Learning Journal</h2>
+              <p className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mt-2">{history.length} Entries</p>
             </div>
             {history.length === 0 ? (
               <div className="py-24 text-center opacity-20">
-                <p className="font-hand text-xl">Your archive is empty. Try upgrading a thought first.</p>
+                <p className="font-hand text-xl">Empty notebook.</p>
               </div>
             ) : (
               history.map(card => renderCard(card))
@@ -267,11 +266,11 @@ const Section: React.FC<{
 );
 
 const PatternNote: React.FC<{ pattern: StructuralPattern }> = ({ pattern }) => (
-  <div className="bg-neutral-50/50 p-4 rounded sketch-border relative bg-grid">
+  <div className="scrap-paper p-5 relative mb-2">
     <div className="flex flex-col gap-1">
       <h5 className="text-[9px] uppercase font-bold text-neutral-400 tracking-widest">{pattern.title}</h5>
-      <p className="text-sm font-bold text-neutral-800">{pattern.template}</p>
-      <p className="text-[10px] text-neutral-500 italic mt-1 font-hand">{pattern.note}</p>
+      <p className="text-sm font-bold text-neutral-800 doodle-underline inline-block self-start">{pattern.template}</p>
+      <p className="text-[10px] text-neutral-500 italic mt-2 font-hand leading-tight">{pattern.note}</p>
     </div>
   </div>
 );
